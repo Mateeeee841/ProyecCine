@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Proyecto;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Agruego servicio para que haga la conexion a la base de datos
+builder.Services.AddDbContext<ConexionesDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("baseDeMateo")));
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
